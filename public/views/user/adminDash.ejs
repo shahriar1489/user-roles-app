@@ -12,6 +12,7 @@
   </head>
   <body>
     <h2>Sysadmin Dashboard</h2>
+    <a href="/listModerators"><h3>See a list of Moderators</h3></a>
     <h3>Add Moderator</h3>
     <input id="email" type="email" placeholder="email"/>
     <input id="password" type="password" placeholder="password"/>
@@ -49,6 +50,7 @@
         data: user
       }).done(function(response){
           $("#error").text("New moderator created");
+          window.location.replace('/listModerators');
       }).fail(function(response){
         console.log(response);
        $("#error").text(JSON.parse(response.responseText).message);
