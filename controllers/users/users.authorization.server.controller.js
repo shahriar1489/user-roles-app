@@ -54,3 +54,13 @@ exports.hasAuthorization = function(roles) {
 		});
 	};
 };
+
+/* Authorize different roles */
+exports.isSysadmin = function(req, res, next) {
+		if (req.user.roles !== "Sysadmin") {
+		return res.status(401).send({
+			message: 'User is not an authorized Sysadmin'
+		});
+	}
+	next();
+};
