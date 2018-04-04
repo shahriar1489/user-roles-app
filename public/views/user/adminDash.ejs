@@ -1,7 +1,7 @@
 <!DOCTYPE html5>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Hello!</title>
+    <title>Admin Dashboard</title>
     <!-- General META -->
     <meta charset="utf-8">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -11,9 +11,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
   </head>
   <body>
-    <h2>Sign In</h2>
+    <h2>Sysadmin Dashboard</h2>
+    <h3>Add Moderator</h3>
     <input id="email" type="email" placeholder="email"/>
-    <input id="password" type="password"/>
+    <input id="password" type="password" placeholder="password"/>
+    <input id="firstName" type="text" placeholder="First Name"/>
+    <input id="lastName" type="text" placeholder="Last Name"/>
+    <input id="username" type="text" placeholder="username"/>
     <button id="submit">Submit</button>
     <br/>
     <div id="error"></div>
@@ -28,20 +32,26 @@
     $("#password").change(function(event){
       user.password=$("#password").val();
     });
+    $("#firstName").change(function(event){
+      user.firstName=$("#firstName").val();
+    });
+    $("#lastName").change(function(event){
+      user.lastName=$("#lastName").val();
+    });
+    $("#username").change(function(event){
+      user.username=$("#username").val();
+    });
     $("#submit").click(function(event){
+      user.roles = "Moderator";
       $.ajax({
         method: 'POST',
-        url: "/auth/signin",
+        url: "/auth/signupModerator",
         data: user
       }).done(function(response){
-        if(response.roles == "Sysadmin"){
-          window.location.replace('/adminDashboard');
-        }else{
-          window.location.replace('/');
-        }
+          $("#error").text("New moderator created");
       }).fail(function(response){
         console.log(response);
-        $("#error").text("Something went wrong! Try again.");
+       $("#error").text(JSON.parse(response.responseText).message);
       });
     });
   </script>

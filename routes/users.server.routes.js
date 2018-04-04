@@ -29,6 +29,11 @@ module.exports = function(app) {
 
 	// Routes to user views
 	app.route('/signin').get(users.signinView);
+	
+	//Routes to SysAdmin views
+	app.route('/adminDashboard').get(users.requiresLogin, users.isSysadmin, users.adminDashView);
+	
+	
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
 };

@@ -61,3 +61,11 @@ exports.me = function(req, res) {
 exports.read = function(req, res) {
 	res.json(req.profile);
 };
+
+//Admin Dash view controllers 
+exports.adminDashView = function(req, res) {
+	res.render('./../public/views/user/adminDash.ejs', {
+		user: req.user || null,
+		request: req
+	});
+};
