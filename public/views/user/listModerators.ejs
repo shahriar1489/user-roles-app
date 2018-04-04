@@ -1,0 +1,16 @@
+
+<html>
+ <head>
+     <title>All Moderators</title>
+ </head>   
+  <body>
+      
+      <h2>List of all moderators</h2>
+  <% for(var i=0; i<moderators.length; i++) { %>
+    <h2> <%= moderators[i].firstName %> <%= moderators[i].lastName %></h2>
+    <h3><%= moderators[i].email%></h3>
+      <hr></hr>
+    <% } %>
+  <a href="/adminDashboard"> Back to Dashboard </a>
+  </body>  
+</html>

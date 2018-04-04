@@ -32,7 +32,7 @@ module.exports = function(app) {
 	
 	//Routes to SysAdmin views
 	app.route('/adminDashboard').get(users.requiresLogin, users.isSysadmin, users.adminDashView);
-	
+	app.route('/listModerators').get(users.requiresLogin, users.isSysadmin, users.listModeratorsView);
 	
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

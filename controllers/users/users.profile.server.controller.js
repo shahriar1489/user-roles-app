@@ -69,3 +69,21 @@ exports.adminDashView = function(req, res) {
 		request: req
 	});
 };
+
+exports.listModeratorsView = function(req, res) {
+	User.find({roles:"Moderator"}, function(err, data) {
+      if (err) {
+        return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      else {
+      	console.log(data);
+		res.render('./../public/views/user/listModerators.ejs', {
+			user: req.user || null,
+			moderators: data
+		});
+      }
+    });
+};
