@@ -66,6 +66,9 @@ var UserSchema = new Schema({
         default: '',
         trim: true
     },
+    
+    
+// Social Media    
     linkedin: {
         type: String,
         default: '',
@@ -76,6 +79,62 @@ var UserSchema = new Schema({
         default: '',
         trim: true
     },
+    
+// Moderator attributes     
+    
+// Organization attributes    
+
+// parent Mod of Org    
+    org_pi_moderator: { // 23:40 -> What is the advantage of this? This is a default id by mongodb
+    type: Schema.ObjectId,
+    ref: 'Moderator' // 3.22.18 00:06 -> is this okay?  
+  },
+    
+// The Address of Operation should go below 
+
+  org_line1_address:{ // Street address, P.O. box, company name, c/o
+    type: String, 
+    trim: true, 
+    default: "Address Line1: Street address, P.O. box, company name, c/o"
+    //required: "Address Line1: Street address, P.O. box, company name, c/o is required"
+  },
+//     
+  org_line2_address:{ // Apartment, suite , unit, building, floor, etc.
+    type: String, 
+    trim: true, 
+    default: 'ORGANIZATION Address Line2: Apartment, suite , unit, building, floor, etc.'
+    //required: "ORGANIZATION Address Line2: Apartment, suite , unit, building, floor, etc. is required"
+  },
+    
+  org_city_address: {   
+    type: String, 
+    trim: true,
+    default: "Cox's Bazar", // keeping it contextual
+    //required: 'City of Organization required'
+  },
+    
+  org_country_address: {   
+    type: String, 
+    trim: true,
+    default: "Bangladesh",  // keeping it contextual 
+    //required: 'Country of Organization required'
+  },
+    
+  org_zip_code: {   
+    type: Number, 
+    trim: true,
+    //required: 'Zip of Organization required'
+  },    
+    
+//////////////////////////    
+    
+// Volunteer attributes     
+ 
+
+
+/////////////////////
+
+// USER: Password and things I got no clue of     
     password: {
         type: String,
         default: '',
@@ -87,15 +146,20 @@ var UserSchema = new Schema({
     },
     provider: {
         type: String,
+        default: 'default provider',    //  Added this
         required: 'Provider is required'
     },
     providerData: {},
     additionalProvidersData: {},
+    
+// Roles -> Suggested by SH Miss    
     roles: {
         type: String,
         default: 'Volunteer',
-        enum: ['Volunteer' , 'Organization', 'Moderator', 'Sysadmin']
+        enum: ['Volunteer' , 'Organization', 'Moderator', 'Sysadmin']   // Want to create models
     },
+    
+//  Update/created    
     updated: {
         type: Date
     },
@@ -103,6 +167,7 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    
     /* For reset password */
     resetPasswordToken: {
         type: String

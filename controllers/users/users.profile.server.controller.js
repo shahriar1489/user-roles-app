@@ -70,6 +70,7 @@ exports.adminDashView = function(req, res) {
 	});
 };
 
+// Moderator list view 
 exports.listModeratorsView = function(req, res) {
 	User.find({roles:"Moderator"}, function(err, data) {
       if (err) {
@@ -83,6 +84,25 @@ exports.listModeratorsView = function(req, res) {
 		res.render('./../public/views/user/listModerators.ejs', {
 			user: req.user || null,
 			moderators: data
+		});
+      }
+    });
+};
+
+// Organization list view    
+exports.listOrganizationsView = function(req, res) {
+	User.find({roles:"Organization"}, function(err, data) {
+      if (err) {
+        return res.status(400).send({
+
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      else {
+      	console.log(data);
+		res.render('./../public/views/user/listOrganizations.ejs', {	// 1/3 Done. Now make this file 
+			user: req.user || null,
+			organizations: data
 		});
       }
     });

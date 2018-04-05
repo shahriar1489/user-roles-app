@@ -31,8 +31,11 @@ module.exports = function(app) {
 	app.route('/signin').get(users.signinView);
 	
 	//Routes to SysAdmin views
-	app.route('/adminDashboard').get(users.requiresLogin, users.isSysadmin, users.adminDashView);
-	app.route('/listModerators').get(users.requiresLogin, users.isSysadmin, users.listModeratorsView);
+	app.route('/adminDashboard').get(users.requiresLogin, users.isSysadmin, users.adminDashView);	// Added by SH Miss 
+	app.route('/listModerators').get(users.requiresLogin, users.isSysadmin, users.listModeratorsView); // Added by SH Miss 
+	app.route('/listOrganizations').get(users.requiresLogin, users.isSysadmin, users.listOrganizationsView);	// Added for Organization 
+	// Routes to Moderator 
+	
 	
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

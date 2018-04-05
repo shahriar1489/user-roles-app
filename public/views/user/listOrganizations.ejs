@@ -1,0 +1,20 @@
+
+<html>
+ <head>
+     <title>All Organizations</title>
+ </head>   
+  <body>
+      
+      <h2>List of all organizations</h2> <!-- Think over time what you want to add to displayed --> 
+  <% for(var i=0; i<organizations.length; i++) { %>
+    <h2> <%= organizations[i].firstName %> <%= organizations[i].lastName %></h2>
+    <h3><%= organizations[i].email%></h3>
+      
+      <a href= "#">See full profile</a>
+      <hr></hr>
+    <% } %>
+  <a href="/adminDashboard"> Back to Dashboard </a>
+  </body>  
+</html>
+
+<!-- 2/3 done: Now add routers --> 
