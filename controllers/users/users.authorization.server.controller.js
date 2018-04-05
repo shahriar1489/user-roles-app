@@ -64,3 +64,37 @@ exports.isSysadmin = function(req, res, next) {
 	}
 	next();
 };
+
+// Authorize Moderator *//*
+// at users.authorization.server.controller.js
+exports.isOrganization = function(req, res, next) {
+		if (req.user.roles !== "Moderator") {
+		return res.status(401).send({
+			message: 'User is not an authorized Moderator'  // display this message at the web page 
+		});
+	}
+	next();
+};
+
+
+// Authorize Org *//*
+// at users.authorization.server.controller.js
+exports.isOrganization = function(req, res, next) {
+		if (req.user.roles !== "Organization") {
+		return res.status(401).send({
+			message: 'User is not an authorized Organization'  // display this message at the web page 
+		});
+	}
+	next();
+};
+
+// Authorize Vol *//*
+// at users.authorization.server.controller.js
+exports.isVolunteer = function(req, res, next) {
+		if (req.user.roles !== "Volunteer") {
+		return res.status(401).send({
+			message: 'User is not an authorized Volunteer'  // display this message at the web page 
+		});
+	}
+	next();
+};
