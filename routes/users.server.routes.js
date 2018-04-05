@@ -34,7 +34,12 @@ module.exports = function(app) {
 	app.route('/adminDashboard').get(users.requiresLogin, users.isSysadmin, users.adminDashView);	// Added by SH Miss 
 	app.route('/listModerators').get(users.requiresLogin, users.isSysadmin, users.listModeratorsView); // Added by SH Miss 
 	app.route('/listOrganizations').get(users.requiresLogin, users.isSysadmin, users.listOrganizationsView);	// Added for Organization 
+	
 	// Routes to Moderator 
+	
+	//Routes to Organization views 
+	app.route().post();	// The one for creating Volpost -> Work on this now
+	app.route();   // The one for creating Donpost -> more on this later 
 	
 	
 	// Finish by binding the user middleware
