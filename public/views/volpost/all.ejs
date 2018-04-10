@@ -1,0 +1,22 @@
+<!-- for now try to display the dummy posts. That's it! --> 
+<!-- make a page --> 
+
+<html>
+ <head>
+     <title>All Volposts</title>
+ </head>   
+  <body>
+      
+      <h2>List of all volposts</h2>
+      <h1>Volpost List</h1>
+<% console.log(volposts) %>
+  <% for(var i=0; i<volposts.length; i++) { %>
+    <h1> <%= volposts[i].title %> </h1>
+    <p>
+      <%= volposts[i].user%>
+    </p>
+    <h3><%= volposts[i].content%></h3>
+    <h3><%= volposts[i].created%></h3>
+    <% } %>
+  </body>  
+</html>

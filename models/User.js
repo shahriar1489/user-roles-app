@@ -122,7 +122,8 @@ var UserSchema = new Schema({
     
   org_zip_code: {   
     type: Number, 
-    trim: true,
+    //trim: true,
+    default: '1000'
     //required: 'Zip of Organization required'
   },    
     

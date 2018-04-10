@@ -63,15 +63,15 @@ exports.read = function(req, res) {
 };
 
 //Admin Dash view controllers 
-exports.adminDashView = function(req, res) {
-	res.render('./../public/views/user/adminDash.ejs', {
+exports.adminDashView = function(req, res) {	// Directs to Admin dashboard upon login by Admin 
+	res.render('./../public/views/user/adminDash.ejs', {	// Page directed to for every admin login 
 		user: req.user || null,
 		request: req
 	});
 };
 
 // Moderator list view 
-exports.listModeratorsView = function(req, res) {
+exports.listModeratorsView = function(req, res) {	// Views Moderator list upon Moderator login 
 	User.find({roles:"Moderator"}, function(err, data) {
       if (err) {
         return res.status(400).send({
@@ -90,8 +90,8 @@ exports.listModeratorsView = function(req, res) {
 };
 
 // Organization list view    
-exports.listOrganizationsView = function(req, res) {
-	User.find({roles:"Organization"}, function(err, data) {
+exports.listOrganizationsView = function(req, res) {	// Views Organization list upon Organization login 
+	User.find( {roles:"Organization"} , function(err, data) {
       if (err) {
         return res.status(400).send({
 
@@ -107,3 +107,27 @@ exports.listOrganizationsView = function(req, res) {
       }
     });
 };
+
+
+// Volunteer 
+/*
+exports.listVolunteersView = function(req, res) {	// Views Organization list upon Organization login 
+	User.find( {roles:"Volunteer"} , function(err, data) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      else {
+      	console.log(data);
+			
+			//res.render('./../public/views/user/listOrganizations.ejs', {	// 1/3 Done. Now make this file 
+			user: req.user || null,
+			organizations: data
+		
+				
+			});
+      }
+    });
+};
+*/

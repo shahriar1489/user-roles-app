@@ -17,7 +17,7 @@ var VolpostSchema = {
 
   user: { // Need the Organization 
     type: Schema.ObjectId,
-    ref:  'User'//'User' // Change this to Organization
+    ref:  'User'  //  
   },
   
   title: {
@@ -35,22 +35,92 @@ var VolpostSchema = {
 
   },
 
-  no_of_volunteer_needed: {
+// No. of applications accepting
+
+  total_applications:{
     type: Number, 
-    required: 'Total number of Volunteer required must be mentioned'
+    default: 100
   },
+
+//  aoe:{ // area of expertise //for volunteers
+//    type: Array(7),
+//    default: [0, 0, 0, 0, 0, 0, 0]  // -> no of Volunteer needed in Area of Expertise 
+//  },
+
+  aoe0:{
+    type: Number,
+    default: 0
+  }, 
+  aoe1:{
+    type: Number,
+    default: 0
+  }, 
+  aoe2:{
+    type: Number,
+    default: 0
+  },
+  aoe3:{
+    type: Number,
+    default: 0
+  }, 
+  aoe4:{
+    type: Number,
+    default: 0
+  }, 
+  aoe5:{
+    type: Number,
+    default: 0
+  },
+  aoe6:{
+    type: Number,
+    default: 0
+  },
+
+
+// Remuneration
 
   remuneration: { // 3/30/18 10:03 -> more on this later
     type: Boolean,
     default: false,
-    //required: "Mention of remuneration is required"
+    required: "Mention of remuneration is required"
   },
-  
-  remuneration_amount:{
-    type: Number,  
-    trim: true, 
+  // ra -> remuneration amount
+/*  
+  remuneration_amount:{ // this has to be array corresponding to aoe. remunation will vary accordingly to skill 
+    type: Array,
+    default: [0, 0, 0, 0, 0, 0, 0]  // no of Volunteer needed in Area of Expertise
+  },
+*/  
+  ra0:{
+    type: Number,
+    default: 0
+  }, 
+  ra1:{
+    type: Number,
+    default: 0
+  }, 
+  ra2:{
+    type: Number,
     default: 0
   },
+  ra3:{
+    type: Number,
+    default: 0
+  }, 
+  ra4:{
+    type: Number,
+    default: 0
+  }, 
+  ra5:{
+    type: Number,
+    default: 0
+  },
+  ra6:{
+    type: Number,
+    default: 0
+  },
+
+  // Data on created/updated
   
   created: {
     type: Date,

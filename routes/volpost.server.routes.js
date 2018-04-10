@@ -8,25 +8,24 @@ module.exports = function(app){
 
  app.route('/api/volposts')
 	.get(volposts.list)
-	.post(users.requiresLogin, users.isOrganization, volposts.create);    // add the callback for Organization verification. 
+	.post(users.requiresLogin, users.isOrganization, volposts.create);    // only Volunteer can create a post 
 
 
-//  app.route('/api/volposts/:volpostId')
-//	.get(volposts.read)
-//  .delete(users.requiresLogin, users.isOrganization ,volposts.delete);
+  app.route('/api/volposts/:volpostId')
+	.get(volposts.read)
+  .delete(users.requiresLogin, users.isOrganization, volposts.delete);  // only Volunteer can delete a post 
 
-//	app.route('/api/volposts/edit/:volpostId')
-//	.get(volposts.read)
-//	.put(users.requiresLogin, users.isOrganization, volposts.update);
+	app.route('/api/volposts/edit/:volpostId')
+	.get(volposts.read)
+	.put(users.requiresLogin, users.isOrganization, volposts.update);   // only Volunteer can update a post
 
-//app.route('/volposts/all').get(volposts.listView);
+// Notice the 2 routes below. Try to figure out what is happening.
+app.route('/volposts/all').get(volposts.listView);  // anybody can see posts
+app.route('/volposts/new').get(volposts.createView);    // What does this API do? Ans: This renders the new.ejs file  
 
-app.route('/volposts/new').get(volposts.createView);
-
-//app.route('/volposts/:volpostId').get(volposts.singleView);
+app.route('/volposts/:volpostId').get(volposts.singleView); // Single post view 
 
 
-app.param('volpostId', volposts.volpostByID);
-
+app.param('volpostId', volposts.volpostByID);   // 
 
 }

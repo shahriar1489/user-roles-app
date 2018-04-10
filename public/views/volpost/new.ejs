@@ -2,52 +2,95 @@
 <!-- ato koshto korey page gula bananor por! -_- --> 
 
 <head>
+  <title>RR- New Volpost</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<body>
 
-<body> 
+<div class="container">
+  <h2>Form control: input</h2>
+  <p>The form below contains two input elements; one of type text and one of type password:</p>
+  
+  <form>
+    
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" id="title">
+    </div>
+    
+    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+  </form>
+</div>
 
 </body>
 
 <script src ="/lib/jquery/dist/jquery.min.js"> </script>  <!-- jquery --> 
+
 <script>
 
-var testTitle = prompt("Enter a test title. We will do the rest to create dummy post: ");
 
-var newVolpost = {
+var newVolpost = {  // istantiated this  if adding remuneration
 /*
-  user (schemaId, created, updated
-*/  
-  title: testTitle,  
-  content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,",
-  
-  no_of_volunteer_needed: "",
+  user: { // Need the Organization
+    type: Schema.ObjectId,
+    ref:  'User'  //
+  },
+*/
+  title: "Dummy Text.", // req
+  content: "DS dsajdkla sd ksajf asldfsdfoiwe fsd. asld iaifo awejf. fjaiosd a.das d.as d as.d asd.a dasda. msd.",
+// No. of applications accepting
+  total_applications: 100,
+  aoe: [0, 0, 0, 0, 0, 0, 0],
 
-  remuneration: False,  
-  remuneration_amount: 0
-}
 
-console.log(newVolpost);
+// Remuneration
+  remuneration: false,  // This is required. This wasn't instantiated. Try to upload from FE
+  remuneration_amount: [0, 0, 0, 0, 0, 0, 0]
+
+  // Data on created/updated
+/*
+  created: {
+    type: Date,
+    default: Date.now
+  },
+
+  updated:{
+    type: Date
+  }
+*/}
+
+console.log("After declaration, newVolpost = " + newVolpost);
 
 // Do the AJAX Part below.
 // AJAX for volpost/new.ejs
-$.ajax({
+$('#submit').click(function(){  // the submission will happen
 
-  method: "POST",
-  url: "/api/volpost", // fix this. previously "/api/products"
+// get the title 
+//newVolpost.title = JSON.stringify( $('#title').val() ); 
+
+// now submit the content. 
+  $.ajax({
+
+  method: "POST",  // POSTing a volpost 
+  url: "/api/volposts", // fix this. previously "/api/products"
   data: newVolpost // fix this. previously newProduct
 
   }).done(function(response){
-                    console.log("Succeessfully posted dummy post");
-                    console.log(response);
-                    //window.location.replace('/product/' + response._id);
-                    window.location.replace('/volpost/' +  response._id);
-                }).fail(function(response){
-                    $('#error').text(JSON.parse(response.responseText).message);
-                    console.log(response.responseText);
-                });
+      console.log("Succeessfully posted dummy post");
+      console.log(response);
+      alert("Post successful");
+      //window.location.replace('/product/' + response._id);
+      //window.location.replace('/volpost/' +  response._id);
+  }).fail(function(response){
+      //$('#error').text(JSON.parse(response.responseText).message);
+      console.log("New volpost upload failed: " + response.responseText);
+  });
 
-</script>
-
-
+  
+});
 
 </script>
